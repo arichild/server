@@ -3,8 +3,8 @@ const app = express();
 let connections = [];
 let tick = 0;
 
-const LIMIT = +process.argv.splice(2)[0];
-const DELAY = 1000;
+const LIMIT = +process.env.LIMIT;
+const DELAY = +process.env.DELAY;
 const PORT = 3000;
 
 app.get('/date', (req, res, next) => {
@@ -18,7 +18,7 @@ let server = app.listen(PORT, () => {
   console.log(`serv run ${PORT}`)
 })
 
-if(Number.isInteger(+LIMIT)) {
+if(Number.isInteger(LIMIT)) {
   setTimeout(function run() {
     let time = new Date();
 
